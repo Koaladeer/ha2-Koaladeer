@@ -2,6 +2,7 @@ package htw.berlin.wi.prog2.service;
 
 import htw.berlin.wi.prog2.domain.Burger;
 import htw.berlin.wi.prog2.domain.Ingredient;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -84,4 +85,20 @@ class BurgerBuilderTest {
     }
 
     // TODO hier mind. einen Test hinzufügen, der das korrekte Werfen der IllegalBurgerException testet (assertThrows)
+    @Test
+    @DisplayName("a Precomputed burger should've at least two ingredients")
+    void buildPrecomputedAndAssertIngredientsCount(){
+        IllegalBurgerException thrown = Assertions.assertThrows(IllegalBurgerException.class, () -> {
+                Burger burger = builder.add(sauce).buildPrecomputed();
+                }, "IllegalBurgerException error was expected");
+        Assertions.assertEquals("you need at least two ingredients for a burger", thrown.getMessage());
+    }
+    @Test
+    @DisplayName("a Precomputed burger should've at least two ingredients")
+    void buildDynamicallyComputedAndAssertIngredientsCount(){
+        IllegalBurgerException thrown2 = Assertions.assertThrows(IllegalBurgerException.class, () -> {
+            Burger burger = builder.add(sauce).buildDynamicallyComputed();
+        }, "IllegalBurgerException error was expected");
+        Assertions.assertEquals("you need at least two ingredients for a burger", thrown2.getMessage());
+    }
 }

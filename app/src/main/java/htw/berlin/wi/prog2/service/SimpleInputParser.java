@@ -5,10 +5,9 @@ import htw.berlin.wi.prog2.domain.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-public class SimpleInputParser {
+public class SimpleInputParser implements InputParser {
+    @Override
     public List<Ingredient> ingredientsFromInput(String inputLine) {
         List<Ingredient> result = new ArrayList<>();
         for (Ingredient ing : Menu.getAllArticles().values()) {
@@ -16,4 +15,6 @@ public class SimpleInputParser {
         }
         return result;
     }
+
+
 }
